@@ -1,0 +1,133 @@
+﻿@model DojoCourse.Module.ViewModels.RatingPageViewModel
+
+@{
+    ViewData["Title"] = "Rate " + Model.GameTitle;
+}
+
+<section class="dc-rating-page">
+
+    <a class="dc-rating-back" href="@Model.GameUrl">
+        &larr; Back to Game
+    </a>
+
+    <div class="dc-rating-card">
+
+        <div class="dc-rating-heading">
+            <span class="dc-rating-label">
+                DOJO COURSE COMMUNITY RATING
+            </span>
+
+            <h1>@Model.GameTitle</h1>
+        </div>
+
+        @if (Model.AverageRating.HasValue)
+        {
+            <div class="dc-rating-average">
+                <strong>
+                    @Model.AverageRating.Value.ToString("0.0")
+                </strong>
+                <span>/ 10</span>
+            </div>
+
+            <p class="dc-rating-count">
+                Based on @Model.RatingCount user rating(s)
+            </p>
+        }
+        else
+        {
+            <div class="dc-rating-average">
+                <strong>–</strong>
+                <span>/ 10</span>
+            </div>
+
+            <p class="dc-rating-count">
+                No ratings yet. Be the first!
+            </p>
+        }
+
+        @if (Model.Saved)
+        {
+            <div class="dc-rating-success" role="status">
+                Your rating was saved successfully!
+            </div>
+        }
+
+        <div class="dc-rating-form-section">
+
+            @if (Model.IsAuthenticated)
+            {
+                <h2>Your Rating</h2>
+
+                @if (Model.YourScore.HasValue)
+                {
+                    <p>
+                        Your current rating:
+                        <strong>@Model.YourScore / 10</strong>
+                    </p>
+                }
+
+                <form method="post"
+                      action="@Url.Action(
+                                              "Save",
+                                              "Rating",
+                                              new { area = "DojoCourse.Module" })">
+
+                    @Html.AntiForgeryToken()
+
+                    <input type="hidden"
+                           name="gameContentItemId"
+                           value="@Model.GameContentItemId" />
+
+                    <fieldset>
+                        <legend>
+                            Select a score from 1 to 10
+                        </legend>
+
+                        <div class="dc-rating-options">
+
+                            @for (int score = 1; score <= 10; score++)
+                            {
+                                <label class="dc-rating-choice">
+
+                                    <input type="radio"
+                                           name="score"
+                                           value="@score"
+                                           checked="@(Model.YourScore == score)"
+                                           required />
+
+                                    <span>@score</span>
+
+                                </label>
+                            }
+
+                        </div>
+                    </fieldset>
+
+                    <button type="submit"
+                            class="dc-rating-submit">
+                        @(Model.YourScore.HasValue
+                            ? "Update Rating"
+                            : "Save Rating")
+                    </button>
+
+                </form>
+            }
+            else
+            {
+                <h2>Rate this Game</h2>
+
+                <p>
+                    You need to sign in before rating games.
+                </p>
+
+                <a class="dc-rating-submit"
+                   href="@Url.Content("~/Login")">
+                    Login to Rate
+                </a>
+            }
+
+        </div>
+
+    </div>
+
+</section>

@@ -1,0 +1,38 @@
+﻿@model DojoCourse.Module.ViewModels.GameTipPartViewModel
+
+<div class="dc-tip-card">
+
+    <div class="dc-tip-header">
+
+        <span class="dc-tip-game">
+            @Model.GameName
+        </span>
+
+        <span class="dc-tip-difficulty">
+            @Model.Difficulty
+        </span>
+
+    </div>
+
+    <div class="dc-tip-body">
+
+        <h3>Game Tip</h3>
+
+        <p class="dc-tip-text">
+            @Model.TipText
+        </p>
+
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(Model.PreviewText))
+    {
+        <div class="dc-tip-summary">
+
+            <strong>Quick Tip Preview</strong>
+
+            <p>@Model.PreviewText</p>
+
+        </div>
+    }
+
+</div>

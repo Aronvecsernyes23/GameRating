@@ -1,0 +1,107 @@
+﻿@model DojoCourse.Module.ViewModels.GamesListViewModel
+
+@{
+    ViewData["Title"] = "Games Database";
+}
+
+<section class="dc-games-list">
+
+    <div class="dc-games-list-header">
+        <h1>Games Database</h1>
+
+        <p>
+            Browse games stored in Orchard Core.
+            Filter by developer to find your favorites.
+        </p>
+    </div>
+
+    <form method="get"
+          class="dc-games-filter"
+          action="@Url.Action("List", "Games",
+                      new { area = "DojoCourse.Module" })">
+
+        <label for="developer">
+            Filter by developer
+        </label>
+
+        <div class="dc-games-filter-row">
+
+            <input type="text"
+                   id="developer"
+                   name="developer"
+                   value="@Model.DeveloperFilter"
+                   placeholder="e.g. Mojang Studios" />
+
+            <button type="submit">
+                Filter
+            </button>
+
+            <a href="@Url.Action("List", "Games",
+                                       new { area = "DojoCourse.Module" })">
+                Clear
+            </a>
+
+        </div>
+    </form>
+
+    <p class="dc-games-count">
+        @Model.Games.Count game(s) found
+    </p>
+
+    @if (Model.Games.Count == 0)
+    {
+        <p class="dc-games-empty">
+            No games found.
+        </p>
+    }
+    else
+    {
+        <div class="dc-games-list-grid">
+
+           
+            @foreach (var game in Model.Games)
+            {
+                <div class="dc-game-list-item">
+
+                    <a class="dc-games-list-card"
+                       href="@game.GameUrl">
+
+                        @if (!string.IsNullOrWhiteSpace(game.CoverUrl))
+                        {
+                            <img src="@game.CoverUrl"
+                                 alt="@game.Title"
+                                 class="dc-games-list-cover" />
+                        }
+                        else
+                        {
+                            <div class="dc-games-list-no-cover">
+                                No cover
+                            </div>
+                        }
+
+                        <div class="dc-games-list-info">
+
+                            <h2>@game.Title</h2>
+
+                            <p>
+                                <strong>Developer:</strong>
+                                @game.Developer
+                            </p>
+
+                            <p>
+                                <strong>Publisher:</strong>
+                                @game.Publisher
+                            </p>
+
+                        </div>
+
+                    </a>
+
+                </div>
+            }
+
+
+        </div>
+    }
+
+</section>

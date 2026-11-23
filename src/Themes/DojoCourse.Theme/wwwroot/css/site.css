@@ -1,0 +1,2014 @@
+﻿:root {
+    --dc-bg: #0b1220;
+    --dc-surface: #131f31;
+    --dc-border: #29384e;
+    --dc-text: #e2e8f0;
+    --dc-muted: #94a3b8;
+    --dc-accent: #22d3ee;
+    --dc-accent-dark: #0891b2;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body.dc-site {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--dc-bg);
+    color: var(--dc-text);
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+.dc-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(11, 18, 32, 0.96);
+    border-bottom: 1px solid var(--dc-border);
+    backdrop-filter: blur(12px);
+}
+
+.dc-navbar {
+    max-width: 1240px;
+    min-height: 76px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+
+.dc-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    text-decoration: none;
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+    .dc-logo:hover {
+        color: var(--dc-accent);
+        text-decoration: none;
+    }
+
+.dc-logo-icon {
+    font-size: 27px;
+}
+
+
+.dc-nav {
+    flex: 1;
+}
+
+    .dc-nav ul,
+    .dc-nav menu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .dc-nav li {
+        list-style: none;
+    }
+
+    .dc-nav a {
+        display: inline-block;
+        padding: 9px 14px;
+        color: #cbd5e1;
+        text-decoration: none;
+        border-radius: 9px;
+        font-size: 14px;
+        font-weight: 600;
+        transition: background 0.2s, color 0.2s;
+    }
+
+        .dc-nav a:hover,
+        .dc-nav .active > a {
+            color: var(--dc-accent);
+            background: rgba(34, 211, 238, 0.09);
+            text-decoration: none;
+        }
+
+.dc-account {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+    .dc-account a {
+        color: var(--dc-text);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+        .dc-account a:hover {
+            color: var(--dc-accent);
+        }
+
+    .dc-account .dc-register {
+        padding: 9px 16px;
+        color: #06121c;
+        background: var(--dc-accent);
+        border-radius: 9px;
+    }
+
+        .dc-account .dc-register:hover {
+            color: #06121c;
+            background: #67e8f9;
+        }
+
+.dc-username {
+    font-size: 14px;
+    color: var(--dc-accent);
+}
+
+
+.dc-main {
+    min-height: 65vh;
+    padding: 42px 0 70px;
+}
+
+.dc-container {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto;
+}
+
+.dc-page-title {
+    margin: 0 0 28px;
+    color: #ffffff;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.dc-main a {
+    color: var(--dc-accent);
+}
+
+    .dc-main a:hover {
+        color: #67e8f9;
+    }
+
+
+.dc-main input[type="text"],
+.dc-main input[type="search"],
+.dc-main input[type="email"],
+.dc-main input[type="date"],
+.dc-main input[type="password"],
+.dc-main select,
+.dc-main textarea {
+    max-width: 100%;
+    padding: 11px 14px;
+    background: #ffffff;
+    color: #1e293b;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    font: inherit;
+}
+
+    .dc-main input:focus,
+    .dc-main textarea:focus,
+    .dc-main select:focus {
+        outline: 2px solid var(--dc-accent);
+        outline-offset: 1px;
+    }
+
+.dc-main button[type="submit"],
+.dc-main input[type="submit"] {
+    padding: 11px 20px;
+    background: var(--dc-accent-dark);
+    color: #ffffff;
+    border: 0;
+    border-radius: 9px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+    .dc-main button[type="submit"]:hover,
+    .dc-main input[type="submit"]:hover {
+        background: #0e7490;
+    }
+
+.dc-footer {
+    border-top: 1px solid var(--dc-border);
+    background: #080e19;
+}
+
+.dc-footer-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 30px 24px;
+    text-align: center;
+}
+
+.dc-footer a {
+    color: var(--dc-accent);
+}
+
+.dc-copyright {
+    margin: 16px 0 0;
+    color: var(--dc-muted);
+    font-size: 13px;
+}
+
+
+@media (max-width: 900px) {
+    .dc-navbar {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .dc-nav {
+        flex: none;
+        width: 100%;
+    }
+
+    .dc-main {
+        padding-top: 28px;
+    }
+}
+
+@media (max-width: 600px) {
+    .dc-container {
+        width: calc(100% - 24px);
+    }
+
+    .dc-nav ul,
+    .dc-nav menu {
+        gap: 2px;
+    }
+
+    .dc-nav a {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .dc-main {
+        padding-bottom: 40px;
+    }
+}
+
+.dc-module-demo {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 45px;
+    background: #131f31;
+    border: 1px solid #29384e;
+    border-radius: 20px;
+    color: #e2e8f0;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+}
+
+.dc-module-badge {
+    display: inline-block;
+    padding: 7px 13px;
+    margin-bottom: 20px;
+    background: rgba(34, 211, 238, 0.12);
+    color: #67e8f9;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.dc-module-demo h1 {
+    color: #ffffff;
+    font-size: clamp(27px, 4vw, 40px);
+    margin-bottom: 18px;
+}
+
+.dc-module-demo p {
+    color: #cbd5e1;
+}
+
+.dc-module-features {
+    margin: 28px 0;
+    padding: 25px;
+    border: 1px solid #334155;
+    border-radius: 14px;
+    background: #0f172a;
+}
+
+    .dc-module-features h2 {
+        color: #ffffff;
+        font-size: 20px;
+    }
+
+    .dc-module-features ul {
+        padding-left: 22px;
+        line-height: 2;
+    }
+
+.dc-module-button {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 20px;
+    background: #0891b2;
+    color: #ffffff;
+    border: 0;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+    .dc-module-button:hover {
+        background: #0e7490;
+    }
+
+.dc-module-links {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+@media (max-width: 600px) {
+    .dc-module-demo {
+        padding: 24px 18px;
+        margin: 20px auto;
+    }
+}
+
+/* DOJO COURSE - FILE MANAGEMENT */
+
+.dc-file-manager {
+    max-width: 760px;
+    margin: 40px auto;
+    padding: 40px;
+    background: #131f31;
+    border: 1px solid #29384e;
+    border-radius: 20px;
+    color: #e2e8f0;
+}
+
+    .dc-file-manager h1 {
+        color: #ffffff;
+        font-size: 32px;
+        margin: 0 0 15px;
+    }
+
+    .dc-file-manager > p {
+        color: #94a3b8;
+        margin-bottom: 28px;
+    }
+
+.dc-file-field label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.dc-file-field input {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: #0f172a;
+    color: #e2e8f0;
+    border: 1px dashed #64748b;
+    border-radius: 10px;
+}
+
+.dc-file-help {
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.dc-file-manager button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 15px;
+    background: #0891b2;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+    .dc-file-manager button:hover {
+        background: #0e7490;
+    }
+
+.dc-upload-result {
+    margin-top: 32px;
+    padding: 24px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 14px;
+}
+
+    .dc-upload-result h2 {
+        color: #67e8f9;
+        font-size: 21px;
+    }
+
+.dc-upload-preview {
+    display: block;
+    max-width: 260px;
+    max-height: 360px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    margin: 20px auto;
+    border-radius: 10px;
+}
+
+.dc-file-error {
+    color: #fecaca;
+    background: #450a0a;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+@media (max-width: 600px) {
+    .dc-file-manager {
+        padding: 22px 18px;
+        margin: 20px auto;
+    }
+}
+
+/* ==============================
+   DOJO COURSE - GAME TIP CARD
+   ============================== */
+
+.dc-tip-card {
+    max-width: 800px;
+    margin: 25px 0;
+    padding: 25px;
+    background: #131f31;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+    color: #e2e8f0;
+}
+
+.dc-tip-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #334155;
+}
+
+.dc-tip-game {
+    font-size: 18px;
+    font-weight: 700;
+    color: #67e8f9;
+}
+
+.dc-tip-difficulty {
+    display: inline-block;
+    padding: 6px 12px;
+    background: rgba(34, 211, 238, 0.12);
+    border: 1px solid rgba(34, 211, 238, 0.25);
+    border-radius: 20px;
+    color: #67e8f9;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.dc-tip-body {
+    padding-top: 16px;
+}
+
+    .dc-tip-body h3 {
+        margin: 0 0 12px;
+        color: #ffffff;
+        font-size: 21px;
+    }
+
+.dc-tip-text {
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 15px;
+    line-height: 1.8;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+    .dc-tip-card {
+        padding: 18px;
+    }
+}
+
+
+.dc-tip-summary {
+    margin-top: 20px;
+    padding: 18px;
+    background: #0b2634;
+    border-left: 4px solid #22d3ee;
+    border-radius: 10px;
+}
+
+    .dc-tip-summary strong {
+        display: block;
+        margin-bottom: 8px;
+        color: #67e8f9;
+        font-size: 14px;
+    }
+
+    .dc-tip-summary p {
+        margin: 0;
+        color: #cbd5e1;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+.dc-featured-tip {
+    max-width: 800px;
+    margin: 25px auto;
+    padding: 28px;
+    background: linear-gradient( 135deg, #17263b, #101b2b );
+    border: 1px solid #334155;
+    border-radius: 18px;
+    color: #e2e8f0;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+}
+
+.dc-featured-tip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.dc-featured-tip-label {
+    color: #67e8f9;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+
+.dc-featured-tip-difficulty {
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: rgba(34,211,238,0.12);
+    color: #67e8f9;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.dc-featured-tip-title {
+    margin: 20px 0 12px;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.dc-featured-tip-text {
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 15px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+    .dc-featured-tip {
+        padding: 20px;
+        margin: 18px auto;
+    }
+}
+
+
+.dc-games-list {
+    max-width: 1150px;
+    margin: 30px auto 60px;
+}
+
+.dc-games-list-header h1 {
+    color: #ffffff;
+    font-size: clamp(28px, 4vw, 42px);
+    margin-bottom: 10px;
+}
+
+.dc-games-list-header p {
+    color: #94a3b8;
+    margin-bottom: 28px;
+}
+
+.dc-games-filter {
+    margin-bottom: 24px;
+    padding: 24px;
+    background: #131f31;
+    border: 1px solid #334155;
+    border-radius: 14px;
+}
+
+    .dc-games-filter label {
+        display: block;
+        margin-bottom: 10px;
+        color: #e2e8f0;
+        font-weight: 600;
+    }
+
+.dc-games-filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+    .dc-games-filter-row input {
+        flex: 1;
+        min-width: 180px;
+        min-height: 45px;
+    }
+
+    .dc-games-filter-row button {
+        min-height: 45px;
+        padding: 10px 22px;
+    }
+
+    .dc-games-filter-row a {
+        padding: 10px;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+.dc-games-count {
+    margin-bottom: 20px;
+    color: #94a3b8;
+}
+
+.dc-games-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+.dc-games-list-card {
+    display: block;
+    overflow: hidden;
+    background: #142235;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+    .dc-games-list-card:hover {
+        transform: translateY(-5px);
+        border-color: #22d3ee;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        text-decoration: none;
+    }
+
+.dc-games-list-cover {
+    display: block;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.dc-games-list-no-cover {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #203047;
+    color: #94a3b8;
+}
+
+.dc-games-list-info {
+    padding: 20px;
+}
+
+    .dc-games-list-info h2 {
+        color: #ffffff;
+        font-size: 20px;
+        line-height: 1.3;
+        margin: 0 0 15px;
+    }
+
+    .dc-games-list-info p {
+        margin: 6px 0;
+        color: #cbd5e1;
+        font-size: 14px;
+        overflow-wrap: anywhere;
+    }
+
+    .dc-games-list-info strong {
+        color: #67e8f9;
+    }
+
+.dc-games-empty {
+    padding: 25px;
+    background: #131f31;
+    border-radius: 12px;
+    color: #94a3b8;
+}
+
+@media (max-width: 600px) {
+    .dc-games-list-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 14px;
+    }
+
+    .dc-games-list-cover,
+    .dc-games-list-no-cover {
+        height: 230px;
+    }
+}
+
+
+
+.dc-catalog-notice {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin: 18px 0 30px;
+    padding: 28px 32px;
+    background: linear-gradient( 135deg, #172b42 0%, #102033 100% );
+    border: 1px solid #31516a;
+    border-radius: 18px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+.dc-catalog-notice-content {
+    flex: 1;
+    min-width: 250px;
+}
+
+.dc-catalog-notice-label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    color: #67e8f9;
+}
+
+.dc-catalog-notice h2 {
+    margin: 0 0 10px;
+    color: #ffffff;
+    font-size: clamp(23px, 3vw, 30px);
+    line-height: 1.3;
+}
+
+.dc-catalog-notice p {
+    margin: 0;
+    max-width: 640px;
+    color: #cbd5e1;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.dc-main .dc-catalog-notice-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 46px;
+    padding: 12px 22px;
+    background: #0891b2;
+    color: #ffffff;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    transition: background 0.2s;
+}
+
+    .dc-main .dc-catalog-notice-button:hover {
+        background: #0e7490;
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+@media (max-width: 600px) {
+    .dc-catalog-notice {
+        padding: 22px 18px;
+        gap: 20px;
+    }
+
+    .dc-catalog-notice-content {
+        min-width: 0;
+    }
+
+    .dc-main .dc-catalog-notice-button {
+        width: 100%;
+    }
+}
+
+/* =====================================
+   DOJO COURSE - NOTIFICATIONS
+   ===================================== */
+
+.dc-notifications {
+    max-width: 1180px;
+    margin: 0 auto 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.dc-notification {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 22px;
+    border-radius: 12px;
+    background: #102a35;
+    border: 1px solid #248b91;
+    border-left: 4px solid #22d3ee;
+    color: #e2e8f0;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.16);
+}
+
+/* Icon */
+
+.dc-notification-icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(34,211,238,0.15);
+    color: #67e8f9;
+    border-radius: 50%;
+    font-size: 19px;
+    font-weight: 800;
+}
+
+/* Text */
+
+.dc-notification-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.dc-notification-title {
+    display: block;
+    margin-bottom: 4px;
+    color: #67e8f9;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.dc-notification-message {
+    color: #e2e8f0;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+/* Other notification types */
+
+.dc-notification-error {
+    background: #351b24;
+    border-color: #e05b6a;
+}
+
+    .dc-notification-error .dc-notification-icon,
+    .dc-notification-error .dc-notification-title {
+        color: #fda4af;
+    }
+
+.dc-notification-warning {
+    background: #34291c;
+    border-color: #d79b35;
+}
+
+    .dc-notification-warning .dc-notification-icon,
+    .dc-notification-warning .dc-notification-title {
+        color: #fcd34d;
+    }
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    .dc-notification {
+        padding: 15px;
+        gap: 12px;
+    }
+
+    .dc-notification-title {
+        font-size: 15px;
+    }
+}
+
+
+/* =====================================
+   DOJO COURSE - GAME RATING SYSTEM
+   ===================================== */
+
+.dc-rating-page {
+    max-width: 800px;
+    margin: 35px auto 70px;
+}
+
+.dc-rating-back {
+    display: inline-block;
+    margin-bottom: 22px;
+    color: #67e8f9;
+    text-decoration: none;
+}
+
+.dc-rating-card {
+    padding: 35px;
+    border: 1px solid #334155;
+    border-radius: 18px;
+    background: #142235;
+    color: #e2e8f0;
+}
+
+.dc-rating-label {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #67e8f9;
+}
+
+.dc-rating-heading h1 {
+    margin: 12px 0 25px;
+    color: white;
+    font-size: 32px;
+}
+
+.dc-rating-average {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+    .dc-rating-average strong {
+        font-size: 62px;
+        line-height: 1.2;
+        color: #fbbf24;
+    }
+
+    .dc-rating-average span,
+    .dc-rating-count {
+        color: #94a3b8;
+    }
+
+.dc-rating-form-section {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid #334155;
+}
+
+    .dc-rating-form-section h2 {
+        color: white;
+        font-size: 22px;
+    }
+
+.dc-rating-options {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 8px;
+    margin: 20px 0 24px;
+}
+
+.dc-rating-choice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+    .dc-rating-choice input {
+        accent-color: #0891b2;
+    }
+
+    .dc-rating-choice span {
+        display: flex;
+        width: 100%;
+        min-height: 45px;
+        align-items: center;
+        justify-content: center;
+        background: #223148;
+        border: 1px solid #334155;
+        border-radius: 8px;
+        color: white;
+        font-weight: 700;
+    }
+
+    .dc-rating-choice input:checked + span {
+        background: #0891b2;
+        border-color: #67e8f9;
+    }
+
+.dc-rating-submit {
+    display: inline-block;
+    padding: 13px 25px;
+    border: none;
+    border-radius: 9px;
+    background: #0891b2;
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+    .dc-rating-submit:hover {
+        background: #0e7490;
+        color: white;
+    }
+
+.dc-rating-success {
+    margin-top: 20px;
+    padding: 15px;
+    background: #10352d;
+    border: 1px solid #16a34a;
+    border-radius: 9px;
+    color: #86efac;
+}
+
+@media (max-width: 650px) {
+    .dc-rating-card {
+        padding: 22px;
+    }
+
+    .dc-rating-options {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+
+
+
+.dc-game-list-item {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+    .dc-game-list-item .dc-games-list-card {
+        flex: 1;
+    }
+
+.dc-rate-link {
+    display: block;
+    margin-top: 10px;
+    padding: 12px;
+    background: #1c3145;
+    border: 1px solid #31516a;
+    border-radius: 9px;
+    color: #67e8f9;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+}
+
+    .dc-rate-link:hover {
+        background: #0891b2;
+        color: #ffffff;
+    }
+
+
+/* GAME DETAIL - RATING SECTION */
+
+.dc-game-rating-section {
+    margin-top: 30px;
+    padding: 24px;
+    background: #17263a;
+    border: 1px solid #334155;
+    border-radius: 14px;
+}
+
+.dc-game-rating-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+    .dc-game-rating-header h2 {
+        margin: 0;
+        color: #ffffff;
+        font-size: 22px;
+    }
+
+.dc-game-rating-icon {
+    color: #fbbf24;
+    font-size: 28px;
+}
+
+.dc-game-rating-section p {
+    margin-bottom: 20px;
+    color: #cbd5e1;
+}
+
+.dc-game-rating-button {
+    display: inline-block;
+    padding: 13px 24px;
+    background: #0891b2;
+    color: #ffffff;
+    border-radius: 9px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background 0.2s;
+}
+
+    .dc-game-rating-button:hover {
+        background: #0e7490;
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+
+/* =====================================
+   DOJO COURSE - GAME SUBMISSION
+   ===================================== */
+
+.dc-submission-page {
+    max-width: 850px;
+    margin: 35px auto 70px;
+}
+
+.dc-submission-heading {
+    margin-bottom: 28px;
+}
+
+.dc-submission-eyebrow {
+    display: block;
+    color: #67e8f9;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+    margin-bottom: 10px;
+}
+
+.dc-submission-heading h1 {
+    color: #ffffff;
+    font-size: 38px;
+    margin-bottom: 12px;
+}
+
+.dc-submission-heading p {
+    color: #94a3b8;
+    line-height: 1.7;
+}
+
+.dc-submission-form {
+    padding: 32px;
+    background: #142235;
+    border: 1px solid #334155;
+    border-radius: 18px;
+}
+
+.dc-submission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.dc-submission-field {
+    margin-bottom: 22px;
+}
+
+    .dc-submission-field label {
+        display: block;
+        color: #e2e8f0;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .dc-submission-field input,
+    .dc-submission-field textarea {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        min-height: 45px;
+        padding: 12px 14px;
+        color: #f8fafc;
+        background: #0b1626;
+        border: 1px solid #475569;
+        border-radius: 9px;
+        font: inherit;
+    }
+
+    .dc-submission-field textarea {
+        resize: vertical;
+    }
+
+        .dc-submission-field input:focus,
+        .dc-submission-field textarea:focus {
+            outline: 2px solid #0891b2;
+            border-color: #67e8f9;
+        }
+
+    .dc-submission-field small {
+        display: block;
+        margin-top: 8px;
+        color: #94a3b8;
+    }
+
+.dc-submission-errors {
+    color: #fda4af;
+    margin-bottom: 12px;
+}
+
+.dc-submission-footer {
+    border-top: 1px solid #334155;
+    padding-top: 24px;
+}
+
+    .dc-submission-footer p {
+        color: #94a3b8;
+        font-size: 14px;
+    }
+
+    .dc-submission-footer button,
+    .dc-submission-success a {
+        display: inline-block;
+        padding: 13px 24px;
+        background: #0891b2;
+        color: #ffffff;
+        border: 0;
+        border-radius: 9px;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+        .dc-submission-footer button:hover,
+        .dc-submission-success a:hover {
+            background: #0e7490;
+            color: #ffffff;
+        }
+
+.dc-submission-success {
+    max-width: 680px;
+    margin: 55px auto;
+    padding: 36px;
+    background: #142235;
+    border: 1px solid #334155;
+    border-radius: 18px;
+    color: #e2e8f0;
+    text-align: center;
+}
+
+    .dc-submission-success h1 {
+        color: #ffffff;
+    }
+
+    .dc-submission-success p {
+        color: #cbd5e1;
+        line-height: 1.7;
+    }
+
+.dc-submission-success-icon {
+    color: #67e8f9;
+    font-size: 52px;
+}
+
+@media (max-width: 650px) {
+    .dc-submission-form {
+        padding: 20px;
+    }
+
+    .dc-submission-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .dc-submission-heading h1 {
+        font-size: 29px;
+    }
+}
+
+.dc-game-extra-info {
+    display: flex;
+    gap: 18px;
+    margin-top: 14px;
+    padding: 14px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 9px;
+    color: #e2e8f0;
+}
+
+.dc-game-extra-info strong {
+    color: #67e8f9;
+}
+
+.dc-game-extra-description {
+    margin-top: 24px;
+    padding: 20px;
+    background: #17263a;
+    border: 1px solid #334155;
+    border-radius: 12px;
+}
+
+.dc-game-extra-description h3 {
+    color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.dc-game-extra-description p {
+    color: #cbd5e1;
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+
+/* =====================================
+   GAME DETAIL - COMMUNITY RATING
+   ===================================== */
+
+.dc-game-rating-score {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin: 18px 0 6px;
+}
+
+    .dc-game-rating-score strong {
+        color: #fbbf24;
+        font-size: 52px;
+        font-weight: 800;
+        line-height: 1.1;
+    }
+
+    .dc-game-rating-score span {
+        color: #94a3b8;
+        font-size: 17px;
+    }
+
+.dc-game-rating-count {
+    margin-bottom: 18px;
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+.dc-game-rating-your {
+    margin: 12px 0 18px;
+    color: #e2e8f0;
+    font-size: 15px;
+}
+
+    .dc-game-rating-your strong {
+        color: #67e8f9;
+        font-size: 17px;
+    }
+
+    .dc-game-rating-your[hidden] {
+        display: none;
+    }
+
+@media (max-width: 600px) {
+    .dc-game-rating-score strong {
+        font-size: 40px;
+    }
+}
+
+
+/* =====================================
+   DOJO COURSE - COMMUNITY BANNER
+   ===================================== */
+
+.dc-community-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    max-width: 1150px;
+    margin: 35px auto 25px;
+    padding: 28px 32px;
+    background: linear-gradient( 135deg, #172b43, #112033 );
+    border: 1px solid #31516a;
+    border-radius: 16px;
+}
+
+.dc-community-banner-content {
+    flex: 1;
+}
+
+.dc-community-banner-label {
+    display: block;
+    margin-bottom: 12px;
+    color: #67e8f9;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+}
+
+.dc-community-banner h2 {
+    margin: 0 0 10px;
+    color: #ffffff;
+    font-size: 27px;
+    font-weight: 800;
+}
+
+.dc-community-banner p {
+    max-width: 650px;
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.dc-community-banner-button {
+    display: inline-block;
+    padding: 14px 24px;
+    background: #0891b2;
+    color: #ffffff;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+    .dc-community-banner-button:hover {
+        background: #0e7490;
+        color: #ffffff;
+    }
+
+@media (max-width: 700px) {
+    .dc-community-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px;
+        margin: 20px 15px;
+    }
+
+        .dc-community-banner h2 {
+            font-size: 23px;
+        }
+
+    .dc-community-banner-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .dc-community-banner-action {
+        width: 100%;
+    }
+}
+
+/* ========================================
+   DOJO COURSE - HOMEPAGE
+   ======================================== */
+
+.dc-home {
+    width: 100%;
+    max-width: 1200px;
+    margin: 30px auto 70px;
+    color: #e2e8f0;
+}
+
+/* HERO */
+
+.dc-home-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 35px;
+    padding: 55px 48px;
+    background: linear-gradient( 135deg, #172f49 0%, #101b2e 100% );
+    border: 1px solid #31516a;
+    border-radius: 20px;
+}
+
+.dc-home-hero-content {
+    flex: 1;
+    max-width: 690px;
+}
+
+.dc-home-eyebrow {
+    display: block;
+    color: #67e8f9;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 14px;
+}
+
+.dc-home-hero h1 {
+    color: #ffffff;
+    font-size: clamp(32px, 4vw, 54px);
+    line-height: 1.15;
+    font-weight: 800;
+    margin: 0 0 22px;
+}
+
+.dc-home-hero p {
+    color: #cbd5e1;
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 28px;
+}
+
+.dc-home-hero-decoration {
+    flex: 0 0 190px;
+    text-align: center;
+}
+
+    .dc-home-hero-decoration span {
+        font-size: 110px;
+    }
+
+.dc-home-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.dc-home-btn-primary,
+.dc-home-btn-secondary {
+    display: inline-block;
+    padding: 14px 25px;
+    border-radius: 9px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.dc-home-btn-primary {
+    background: #0891b2;
+    color: #ffffff;
+}
+
+    .dc-home-btn-primary:hover {
+        background: #0e7490;
+        color: #ffffff;
+    }
+
+.dc-home-btn-secondary {
+    border: 1px solid #64748b;
+    color: #ffffff;
+}
+
+    .dc-home-btn-secondary:hover {
+        border-color: #67e8f9;
+        color: #67e8f9;
+    }
+
+/* FEATURES */
+
+.dc-home-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 28px 0 60px;
+}
+
+.dc-home-feature {
+    padding: 25px;
+    background: #142235;
+    border: 1px solid #334155;
+    border-radius: 14px;
+}
+
+    .dc-home-feature > span {
+        font-size: 30px;
+    }
+
+    .dc-home-feature h3 {
+        color: #ffffff;
+        font-size: 20px;
+        margin: 15px 0 10px;
+    }
+
+    .dc-home-feature p {
+        color: #94a3b8;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+/* FEATURED GAMES */
+
+.dc-home-section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+    .dc-home-section-heading h2 {
+        color: #ffffff;
+        font-size: 32px;
+        margin: 0 0 12px;
+    }
+
+    .dc-home-section-heading p {
+        color: #94a3b8;
+        margin: 0;
+    }
+
+.dc-home-view-all {
+    color: #67e8f9;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.dc-home-games {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    margin-bottom: 65px;
+}
+
+.dc-home-game-card {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 32px;
+    background: #142235;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: 0.2s;
+}
+
+    .dc-home-game-card:hover {
+        transform: translateY(-4px);
+        border-color: #67e8f9;
+        color: #ffffff;
+    }
+
+.dc-home-game-symbol {
+    font-size: 58px;
+}
+
+.dc-home-game-card h3 {
+    color: #ffffff;
+    font-size: 22px;
+    margin: 0 0 8px;
+}
+
+.dc-home-game-card p {
+    color: #94a3b8;
+    margin: 0 0 15px;
+}
+
+.dc-home-game-card div > span {
+    color: #67e8f9;
+    font-weight: 700;
+}
+
+/* COMMUNITY */
+
+.dc-home-community {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    padding: 35px;
+    background: #17263a;
+    border: 1px solid #31516a;
+    border-radius: 16px;
+}
+
+    .dc-home-community h2 {
+        color: #ffffff;
+        font-size: 27px;
+        margin-bottom: 12px;
+    }
+
+    .dc-home-community p {
+        max-width: 650px;
+        color: #cbd5e1;
+        line-height: 1.7;
+    }
+
+    .dc-home-community .dc-home-btn-primary {
+        flex-shrink: 0;
+    }
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+    .dc-home-hero {
+        padding: 35px 25px;
+    }
+
+    .dc-home-hero-decoration {
+        display: none;
+    }
+
+    .dc-home-features {
+        grid-template-columns: 1fr;
+    }
+
+    .dc-home-games {
+        grid-template-columns: 1fr;
+    }
+
+    .dc-home-community {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 500px) {
+    .dc-home {
+        margin-top: 15px;
+    }
+
+    .dc-home-section-heading {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dc-home-game-card {
+        padding: 22px;
+    }
+
+    .dc-home-game-symbol {
+        font-size: 40px;
+    }
+}
+.dc-site-footer {
+    padding: 28px 20px;
+    border-top: 1px solid #334155;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+    .dc-site-footer p {
+        margin: 0;
+    }
+
+/* ==================================
+   HEADER SEARCH
+   ================================== */
+
+.dc-nav-search {
+    display: flex;
+    align-items: center;
+    flex: 0 1 210px;
+    min-width: 140px;
+    max-width: 230px;
+    height: 36px;
+    margin: 0 10px;
+    padding: 0;
+    background: #ffffff;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+    .dc-nav-search input {
+        flex: 1;
+        min-width: 0;
+        height: 100%;
+        padding: 0 10px;
+        color: #0f172a;
+        background: #ffffff;
+        border: none;
+        outline: none;
+        font-size: 12px;
+        font-family: inherit;
+    }
+
+        .dc-nav-search input::placeholder {
+            color: #64748b;
+        }
+
+    .dc-nav-search button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 100%;
+        flex-shrink: 0;
+        background: #0891b2;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+        .dc-nav-search button span {
+            font-size: 23px;
+            line-height: 1;
+        }
+
+        .dc-nav-search button:hover {
+            background: #0e7490;
+        }
+
+@media (max-width: 850px) {
+    .dc-nav-search {
+        flex-basis: 100%;
+        width: 100%;
+        max-width: none;
+        margin: 10px 0;
+    }
+}
+
+/* ========================================
+   DOJO COURSE - SEARCH RESULTS
+   ======================================== */
+
+.dc-search-results {
+    width: 100%;
+    max-width: 1100px;
+    margin: 30px auto 70px;
+    color: #e2e8f0;
+}
+
+.dc-search-results-heading {
+    margin-bottom: 28px;
+}
+
+.dc-search-eyebrow {
+    display: block;
+    margin-bottom: 10px;
+    color: #67e8f9;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+}
+
+.dc-search-results-heading h1 {
+    margin: 0 0 12px;
+    color: #ffffff;
+    font-size: 36px;
+}
+
+.dc-search-results-heading p,
+.dc-search-result-count {
+    color: #94a3b8;
+    font-size: 15px;
+}
+
+.dc-search-results-heading strong {
+    color: #67e8f9;
+}
+
+.dc-search-result-count {
+    margin-bottom: 20px;
+}
+
+/* GRID */
+
+.dc-search-results-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+/* GAME CARD */
+
+.dc-search-game-card {
+    display: flex;
+    min-width: 0;
+    overflow: hidden;
+    background: #142235;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    color: #e2e8f0;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+    .dc-search-game-card:hover {
+        border-color: #67e8f9;
+        transform: translateY(-3px);
+        color: #e2e8f0;
+        text-decoration: none;
+    }
+
+.dc-search-game-cover {
+    width: 155px;
+    min-width: 155px;
+    min-height: 215px;
+    background: #223148;
+}
+
+    .dc-search-game-cover img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        max-height: 235px;
+        object-fit: contain;
+        object-position: center;
+    }
+
+.dc-search-no-cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 100%;
+    min-height: 215px;
+    color: #94a3b8;
+    font-size: 30px;
+}
+
+    .dc-search-no-cover span {
+        font-size: 12px;
+    }
+
+.dc-search-game-info {
+    flex: 1;
+    min-width: 0;
+    padding: 22px 20px;
+}
+
+.dc-search-game-label {
+    color: #67e8f9;
+    font-size: 11px;
+    letter-spacing: 1px;
+    font-weight: 800;
+}
+
+.dc-search-game-info h2 {
+    margin: 12px 0 18px;
+    font-size: 23px;
+    line-height: 1.25;
+    color: #ffffff;
+}
+
+.dc-search-game-info p {
+    margin: 0 0 9px;
+    color: #cbd5e1;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+    .dc-search-game-info p strong {
+        color: #67e8f9;
+    }
+
+.dc-search-view-game {
+    display: inline-block;
+    margin-top: 16px;
+    color: #67e8f9;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* NO RESULTS */
+
+.dc-search-empty {
+    padding: 35px;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    background: #142235;
+}
+
+    .dc-search-empty h2 {
+        color: #ffffff;
+        margin-top: 0;
+    }
+
+    .dc-search-empty p {
+        color: #94a3b8;
+    }
+
+    .dc-search-empty a {
+        color: #67e8f9;
+        font-weight: 700;
+    }
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .dc-search-results-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .dc-search-game-cover {
+        width: 115px;
+        min-width: 115px;
+        min-height: 170px;
+    }
+
+    .dc-search-game-info {
+        padding: 16px 12px;
+    }
+
+        .dc-search-game-info h2 {
+            font-size: 18px;
+        }
+}

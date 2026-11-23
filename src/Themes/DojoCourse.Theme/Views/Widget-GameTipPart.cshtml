@@ -1,0 +1,31 @@
+﻿@model DojoCourse.Module.ViewModels.GameTipPartViewModel
+
+@{
+    string preview = !string.IsNullOrWhiteSpace(Model.PreviewText)
+        ? Model.PreviewText
+        : Model.TipText;
+}
+
+<aside class="dc-featured-tip">
+
+    <div class="dc-featured-tip-header">
+
+        <span class="dc-featured-tip-label">
+            FEATURED GAME TIP
+        </span>
+
+        <span class="dc-featured-tip-difficulty">
+            @Model.Difficulty
+        </span>
+
+    </div>
+
+    <h3 class="dc-featured-tip-title">
+        @Model.GameName
+    </h3>
+
+    <p class="dc-featured-tip-text">
+        @preview
+    </p>
+
+</aside>

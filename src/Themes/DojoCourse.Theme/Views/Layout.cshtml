@@ -1,0 +1,120 @@
+﻿
+<!DOCTYPE html>
+<html lang="@Orchard.CultureName()">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>@RenderTitleSegments(Site.SiteName, "before")</title>
+
+    <meta name="description"
+          content="Dojo Course - Video game database" />
+
+    <link rel="stylesheet"
+          href="@Url.Content("~/DojoCourse.Theme/css/site.css")" />
+
+    <link rel="stylesheet"
+          href="@Url.Content("~/DojoCourse.Theme/css/submit-game.css")" />
+
+    <link rel="stylesheet"
+          href="@Url.Content("~/DojoCourse.Theme/css/game-detail.css")" />
+
+    <resources type="Meta" />
+    <resources type="HeadLink" />
+    <resources type="HeadScript" />
+    <resources type="Stylesheet" />
+
+    @await RenderSectionAsync("HeadMeta", required: false)
+</head>
+
+<body class="dc-site">
+
+    <header class="dc-header">
+        <div class="dc-navbar">
+
+            <a class="dc-logo" href="@Url.Content("~/")">
+                <span class="dc-logo-icon">🎮</span>
+                <span>DOJO COURSE</span>
+            </a>
+
+            <nav class="dc-nav" aria-label="Main navigation">
+                <menu alias="alias:main-menu" />
+            </nav>
+
+            <div class="dc-account">
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <span class="dc-username">
+                        @User.Identity.Name
+                    </span>
+                }
+                else
+                {
+                    <a href="@Url.Content("~/Login")">
+                        Login
+                    </a>
+                    <a class="dc-register"
+                       href="@Url.Content("~/Register")">
+                        Register
+                    </a>
+                }
+            </div>
+
+            <!-- Dojo Course - Header Search -->
+            <form class="dc-nav-search"
+                  method="get"
+                  action="@Url.Content("~/search/gamesindex")"
+                  role="search">
+
+                <input type="search"
+                       name="terms"
+                       placeholder="Search games..."
+                       aria-label="Search games"
+                       required />
+
+                <button type="submit"
+                        aria-label="Search">
+                    <span>⌕</span>
+                </button>
+
+            </form>
+
+
+        </div>
+    </header>
+
+    @await RenderSectionAsync("Header", required: false)
+
+    
+    <main class="dc-main">
+        <div class="dc-container">
+
+            @await RenderSectionAsync(
+                "Messages", required: false)
+
+            @* A C# filter altal letrehozott Layout zone *@
+            @if (Model.Zones["GameListBanner"] != null)
+            {
+                @await DisplayAsync(
+                    Model.Zones["GameListBanner"])
+            }
+
+            @* Az aktualis oldal tartalma *@
+            @await RenderBodyAsync()
+
+        </div>
+    </main>
+
+
+    <footer class="dc-site-footer">
+        <p>
+            &copy; @DateTime.UtcNow.Year Dojo Course.
+            Gaming Database.
+        </p>
+    </footer>
+
+    <resources type="FootScript" />
+
+</body>
+</html>

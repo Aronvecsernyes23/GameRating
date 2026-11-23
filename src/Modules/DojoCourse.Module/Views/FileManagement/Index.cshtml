@@ -1,0 +1,87 @@
+﻿@{
+    ViewData["Title"] = "Game Cover Management";
+
+    var imageUrl = TempData["UploadedImageUrl"] as string;
+    var fileName = TempData["UploadedFileName"] as string;
+}
+
+<section class="dc-file-manager">
+
+    <h1>Game Cover Management</h1>
+
+    <p>
+        Upload a game cover image to the
+        Orchard Core Media Library.
+    </p>
+
+    <form method="post"
+          enctype="multipart/form-data"
+          action="@Url.Action("Create", "FileManagement",
+                      new { area = "DojoCourse.Module" })">
+
+        @Html.AntiForgeryToken()
+
+        <div class="dc-file-field">
+            <label for="file">
+                Select game cover
+            </label>
+
+            <input type="file"
+                   id="file"
+                   name="file"
+                   accept=".jpg,.jpeg,.png,.webp"
+                   required />
+        </div>
+
+        <p class="dc-file-help">
+            JPG, PNG or WebP. Maximum 5 MB.
+        </p>
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="dc-file-error">
+                @Html.ValidationSummary()
+            </div>
+        }
+
+        <button type="submit">
+            Upload Game Cover
+        </button>
+
+    </form>
+
+    @if (!string.IsNullOrEmpty(imageUrl))
+    {
+        <div class="dc-upload-result">
+
+            <h2>Upload successful!</h2>
+
+            <p>
+                Your game cover was saved
+                to the Media Library.
+            </p>
+
+            <img src="@imageUrl"
+                 alt="Uploaded game cover"
+                 class="dc-upload-preview" />
+
+            <p>
+                <strong>Stored file:</strong>
+                @fileName
+            </p>
+
+            <a href="@Url.Action(
+                                   "ReadFile",
+                                   "FileManagement",
+                                   new
+                                   {
+                                       area = "DojoCourse.Module",
+                                       fileName
+                                   })">
+                Read uploaded file
+            </a>
+
+        </div>
+    }
+
+</section>

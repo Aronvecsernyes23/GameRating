@@ -1,0 +1,44 @@
+﻿@{
+    // Az aktuális oldal URL-útvonala.
+    var currentPath = Context.Request.Path.Value ?? "/";
+
+    // Csak a főoldalon (/) jelenjen meg a banner.
+    bool isHomePage = string.IsNullOrEmpty(
+        currentPath.Trim('/'));
+}
+
+@if (isHomePage)
+{
+    <section class="dc-community-banner">
+
+        <div class="dc-community-banner-content">
+
+            <span class="dc-community-banner-label">
+                DOJO COURSE COMMUNITY
+            </span>
+
+            <h2>
+                Help expand our game database!
+            </h2>
+
+            <p>
+                Know a game that isn't listed yet?
+                Suggest it and help the community
+                discover more great games.
+            </p>
+
+        </div>
+
+        <div class="dc-community-banner-action">
+
+            <a class="dc-community-banner-button"
+               href="@Url.Content("~/DojoCourse.Module/GameSubmission/Index")">
+
+                Submit a Game
+
+            </a>
+
+        </div>
+
+    </section>
+}

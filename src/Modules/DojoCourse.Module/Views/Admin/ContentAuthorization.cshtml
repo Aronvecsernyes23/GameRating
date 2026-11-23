@@ -1,0 +1,44 @@
+﻿@model DojoCourse.Module.ViewModels.GameSuggestionAuthorizationViewModel
+
+@{
+    ViewData["Title"] = "Content Authorization";
+}
+
+<div class="container-fluid">
+
+    <h1>Content Authorization</h1>
+
+    <p>
+        <strong>Content:</strong>
+        @Model.Title
+    </p>
+
+    <p>
+        <strong>Content status:</strong>
+        @(Model.IsExisting
+            ? "Existing GameSuggestion"
+            : "New GameSuggestion (not saved)")
+    </p>
+
+    @if (Model.CanEdit)
+    {
+        <div class="alert alert-success">
+            Permission granted:
+            you can edit this GameSuggestion content.
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            Permission denied:
+            you cannot edit this GameSuggestion content.
+        </div>
+    }
+
+    <a class="btn btn-secondary"
+       href="@Url.Action("Index", "Admin",
+                                new { area = "DojoCourse.Module" })">
+        Back to Game Moderation
+    </a>
+
+</div>

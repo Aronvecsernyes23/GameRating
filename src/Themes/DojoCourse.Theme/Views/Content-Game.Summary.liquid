@@ -1,0 +1,63 @@
+﻿
+{% assign game = Model.ContentItem %}
+{% assign gameInfo = game.Content.Game %}
+{% assign coverPath = gameInfo.CoverImage.Paths.first %}
+
+<a href="{{ game | display_url }}"
+   class="dc-search-game-card">
+
+    <div class="dc-search-game-cover">
+
+        {% if coverPath != blank %}
+
+            <img src="{{ coverPath | asset_url }}"
+                 alt="{{ game.DisplayText }}"
+                 loading="lazy" />
+
+        {% else %}
+
+            <div class="dc-search-no-cover">
+                🎮
+                <span>No cover available</span>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+    <div class="dc-search-game-info">
+
+        <span class="dc-search-game-label">
+            VIDEO GAME
+        </span>
+
+        <h2>{{ game.DisplayText }}</h2>
+
+        {% if gameInfo.Developer.Text != blank %}
+            <p>
+                <strong>Developer:</strong>
+                {{ gameInfo.Developer.Text }}
+            </p>
+        {% endif %}
+
+        {% if gameInfo.Publisher.Text != blank %}
+            <p>
+                <strong>Publisher:</strong>
+                {{ gameInfo.Publisher.Text }}
+            </p>
+        {% endif %}
+
+        {% if gameInfo.Platforms.Text != blank %}
+            <p>
+                <strong>Platforms:</strong>
+                {{ gameInfo.Platforms.Text }}
+            </p>
+        {% endif %}
+
+        <span class="dc-search-view-game">
+            View Game →
+        </span>
+
+    </div>
+
+</a>

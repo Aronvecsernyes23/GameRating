@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/DojoCourse.Web/DojoCourse.Web.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/">
+    <Project Path="src/Modules/DojoCourse.Module/DojoCourse.Module.csproj" />
+  </Folder>
+  <Folder Name="/src/Themes/">
+    <Project Path="src/Themes/DojoCourse.Theme/DojoCourse.Theme.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,66 @@
+{
+  "TextField": [
+    {
+      "contentType": "GameTip",
+      "differentiator": "GameTipPart-GameName",
+      "place": "-"
+    },
+    {
+      "contentType": "GameTip",
+      "differentiator": "GameTipPart-TipText",
+      "place": "-"
+    },
+    {
+      "contentType": "GameTip",
+      "differentiator": "GameTipPart-Difficulty",
+      "place": "-"
+    },
+    {
+      "contentType": "GameTipWidget",
+      "differentiator": "GameTipPart-GameName",
+      "place": "-"
+    },
+    {
+      "contentType": "GameTipWidget",
+      "differentiator": "GameTipPart-TipText",
+      "place": "-"
+    },
+    {
+      "contentType": "GameTipWidget",
+      "differentiator": "GameTipPart-Difficulty",
+      "place": "-"
+    }
+  ],
+  "TextField_Edit": [
+    {
+      "contentType": "GameTip",
+      "differentiator": "GameTipPart-GameName",
+      "place": "-"
+    },
+    {
+      "contentType": "GameTip",
+      "differentiator": "GameTipPart-TipText",
+      "place": "-"
+    },
+    {
+      "contentType": "GameTip",
+      "differentiator": "GameTipPart-Difficulty",
+      "place": "-"
+    },
+    {
+      "contentType": "GameTipWidget",
+      "differentiator": "GameTipPart-GameName",
+      "place": "-"
+    },
+    {
+      "contentType": "GameTipWidget",
+      "differentiator": "GameTipPart-TipText",
+      "place": "-"
+    },
+    {
+      "contentType": "GameTipWidget",
+      "differentiator": "GameTipPart-Difficulty",
+      "place": "-"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+﻿@using OrchardCore.DisplayManagement.Notify
+
+<div class="dc-notifications">
+
+    @foreach (var entry in (IEnumerable<NotifyEntry>)Model.Entries)
+    {
+        @await DisplayAsync(
+            await New.Message(
+                Type: entry.Type,
+                Message: entry.Message
+            )
+        )
+    }
+
+</div>

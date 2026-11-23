@@ -1,0 +1,155 @@
+﻿@model DojoCourse.Module.ViewModels.GameSubmissionFormViewModel
+
+@{
+    ViewData["Title"] = "Submit a Game";
+}
+
+<section class="dc-submission-page">
+
+    <div class="dc-submission-heading">
+        <span class="dc-submission-eyebrow">
+            DOJO COURSE COMMUNITY
+        </span>
+
+        <h1>Submit a Game</h1>
+
+        <p>
+            Help expand our game database!
+            Complete the information below and our
+            moderators will review your suggestion.
+        </p>
+    </div>
+
+    <form method="post"
+          enctype="multipart/form-data"
+          action="@Url.Action(
+                      "Create",
+                      "GameSubmission",
+                      new { area = "DojoCourse.Module" })"
+          class="dc-submission-form">
+
+        @Html.AntiForgeryToken()
+
+        <div class="dc-submission-errors">
+            @Html.ValidationSummary(false)
+        </div>
+
+        <div class="dc-submission-field">
+            <label for="Title">Game Title *</label>
+
+            <input id="Title"
+                   name="Title"
+                   type="text"
+                   maxlength="180"
+                   value="@Model.Title"
+                   placeholder="e.g. Hollow Knight"
+                   required />
+        </div>
+
+        <div class="dc-submission-grid">
+
+            <div class="dc-submission-field">
+                <label for="ReleaseDate">
+                    Release Date *
+                </label>
+
+                <input id="ReleaseDate"
+                       name="ReleaseDate"
+                       type="date"
+                       value="@(Model.ReleaseDate?.ToString("yyyy-MM-dd"))"
+                       required />
+            </div>
+
+            <div class="dc-submission-field">
+                <label for="Genre">Genre *</label>
+
+                <input id="Genre"
+                       name="Genre"
+                       type="text"
+                       value="@Model.Genre"
+                       placeholder="e.g. Metroidvania"
+                       required />
+            </div>
+
+        </div>
+
+        <div class="dc-submission-grid">
+
+            <div class="dc-submission-field">
+                <label for="Developer">Developer *</label>
+
+                <input id="Developer"
+                       name="Developer"
+                       type="text"
+                       value="@Model.Developer"
+                       placeholder="e.g. Team Cherry"
+                       required />
+            </div>
+
+            <div class="dc-submission-field">
+                <label for="Publisher">Publisher *</label>
+
+                <input id="Publisher"
+                       name="Publisher"
+                       type="text"
+                       value="@Model.Publisher"
+                       placeholder="e.g. Team Cherry"
+                       required />
+            </div>
+
+        </div>
+
+        <div class="dc-submission-field">
+            <label for="Platforms">Platforms *</label>
+
+            <input id="Platforms"
+                   name="Platforms"
+                   type="text"
+                   value="@Model.Platforms"
+                   placeholder="PC, Nintendo Switch, PlayStation, Xbox"
+                   required />
+        </div>
+
+        <div class="dc-submission-field">
+            <label for="Description">
+                Description *
+            </label>
+
+            <textarea id="Description"
+                      name="Description"
+                      rows="6"
+                      maxlength="3000"
+                      placeholder="Describe the game..."
+                      required>@Model.Description</textarea>
+        </div>
+
+        <div class="dc-submission-field">
+            <label for="CoverImage">
+                Cover Image
+            </label>
+
+            <input id="CoverImage"
+                   name="CoverImage"
+                   type="file"
+                   accept=".jpg,.jpeg,.png,.webp" />
+
+            <small>
+                JPG, PNG or WebP. Maximum 5 MB.
+            </small>
+        </div>
+
+        <div class="dc-submission-footer">
+            <p>
+                Your suggestion will be reviewed by
+                an administrator before appearing
+                in the public game database.
+            </p>
+
+            <button type="submit">
+                Submit Game Suggestion
+            </button>
+        </div>
+
+    </form>
+
+</section>

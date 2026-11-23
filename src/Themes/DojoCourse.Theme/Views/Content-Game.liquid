@@ -1,0 +1,262 @@
+﻿
+{% assign game = Model.ContentItem %}
+{% assign fields = game.Content.Game %}
+{% assign cover = fields.CoverImage.Paths.first %}
+
+<article class="dc-game-detail">
+
+    <a href="{{ '~/DojoCourse.Module/Games/List' | href }}" class="dc-back-link">
+        &larr; Back to Games
+    </a>
+
+    <div class="dc-game-panel">
+
+        <!-- COVER IMAGE -->
+        <div class="dc-game-image-area">
+
+            {% if cover != blank %}
+
+                <img
+                    src="{{ cover | asset_url }}"
+                    alt="{{ game.DisplayText }}"
+                    class="dc-game-image" />
+
+            {% else %}
+
+                <div class="dc-no-cover">
+                    No cover available
+                </div>
+
+            {% endif %}
+
+        </div>
+
+        <!-- GAME INFORMATION -->
+        <div class="dc-game-content">
+
+            <span class="dc-game-badge">
+                GAME DETAILS
+            </span>
+
+            <h1 class="dc-game-title">
+                {{ game.DisplayText }}
+            </h1>
+
+            {% if fields.ReleaseDate.Value != blank %}
+                <p class="dc-game-release">
+                    Released:
+                    {{ fields.ReleaseDate.Value | date: "%d/%m/%Y" }}
+                </p>
+            {% endif %}
+
+            <div class="dc-game-divider"></div>
+
+            <div class="dc-game-information">
+
+                <!-- DEVELOPER -->
+                {% if fields.Developer.Text != blank %}
+
+                    <div class="dc-info-item">
+                        <span class="dc-info-label">
+                            Developer
+                        </span>
+
+                        <span class="dc-info-value">
+                            {{ fields.Developer.Text }}
+                        </span>
+                    </div>
+
+                {% endif %}
+
+                <!-- PUBLISHER -->
+                {% if fields.Publisher.Text != blank %}
+
+                    <div class="dc-info-item">
+                        <span class="dc-info-label">
+                            Publisher
+                        </span>
+
+                        <span class="dc-info-value">
+                            {{ fields.Publisher.Text }}
+                        </span>
+                    </div>
+
+                {% endif %}
+
+                <!-- PLATFORMS -->
+                {% if fields.Platforms.Text != blank %}
+
+                    <div class="dc-info-item">
+                        <span class="dc-info-label">
+                            Platforms
+                        </span>
+
+                        <span class="dc-info-value">
+                            {{ fields.Platforms.Text }}
+                        </span>
+                    </div>
+
+                {% endif %}
+
+                <!-- DESCRIPTION -->
+                {% if fields.Description.Text != blank %}
+
+                    <div class="dc-game-description">
+                        <h2>About this game</h2>
+                        <p>
+                            {{ fields.Description.Text | newline_to_br }}
+                        </p>
+                    </div>
+
+                {% endif %}
+
+                {% assign gameInfo = Model.ContentItem.Content.Game %}
+
+                {% if gameInfo.GameGenreText.Text != blank %}
+                <div class="dc-game-extra-info">
+                    <strong>Genre:</strong>
+                    <span>{{ gameInfo.GameGenreText.Text }}</span>
+                </div>
+                {% endif %}
+
+                {% if gameInfo.GameDescription.Text != blank %}
+                <div class="dc-game-extra-description">
+                    <h3>About This Game</h3>
+                    <p>{{ gameInfo.GameDescription.Text }}</p>
+                </div>
+                {% endif %}
+
+                
+                <!--COMMUNITY RATING -->
+                <section class="dc-game-rating-section"
+                data-game-rating-summary="{{ '~/DojoCourse.Module/Rating/Summary' | href }}?gameId={{ Model.ContentItem.ContentItemId | url_encode }}" >
+
+                <div class="dc-game-rating-header" >
+                <span class="dc-game-rating-icon" > ★</span >
+                <h2 > Community Rating</h2 >
+                </div >
+
+                <div class="dc-game-rating-score" >
+                <strong data-rating-average > –</strong >
+                <span > / 10</span >
+                </div >
+
+                <p class="dc-game-rating-count"
+                data-rating-count >
+                Loading community ratings...
+                </p >
+
+                <p class="dc-game-rating-your"
+                data-rating-your
+                hidden >
+                Your rating:
+                <strong data-rating-your-value > </strong > /10
+                </p >
+
+                <a class="dc-game-rating-button"
+                data-rating-link
+                href="{{ '~/DojoCourse.Module/Rating/Index' | href }}?gameId={{ Model.ContentItem.ContentItemId | url_encode }}" >
+                ★ Rate this Game (1–10)
+                </a >
+
+                </section >
+
+                <script>
+                (function () {
+                    const panels = document.querySelectorAll(
+                        "[data-game-rating-summary]"
+                    );
+
+                    panels.forEach(async function (panel) {
+                        const url = panel.getAttribute(
+                            "data-game-rating-summary"
+                        );
+
+                        const averageElement = panel.querySelector(
+                            "[data-rating-average]"
+                        );
+
+                        const countElement = panel.querySelector(
+                            "[data-rating-count]"
+                        );
+
+                        const yourRatingElement = panel.querySelector(
+                            "[data-rating-your]"
+                        );
+
+                        const yourValueElement = panel.querySelector(
+                            "[data-rating-your-value]"
+                        );
+
+                        const ratingLink = panel.querySelector(
+                            "[data-rating-link]"
+                        );
+
+                        try {
+                            const response = await fetch(url, {
+                                credentials: "same-origin",
+                                cache: "no-store",
+                                headers: {
+                                    "Accept": "application/json"
+                                }
+                            });
+
+                            if (!response.ok) {
+                                throw new Error(
+                                    "Could not load game ratings."
+                                );
+                            }
+
+                            const data = await response.json();
+
+                            // Közösségi átlag.
+                            if (data.count > 0 &&
+                                typeof data.average === "number") {
+
+                                averageElement.textContent =
+                                    data.average.toFixed(1);
+
+                                countElement.textContent =
+                                    "Based on " + data.count +
+                                    (data.count === 1
+                                        ? " user rating"
+                                        : " user ratings");
+                            }
+                            else {
+                                averageElement.textContent = "–";
+
+                                countElement.textContent =
+                                    "No ratings yet. Be the first!";
+                            }
+
+                            // A bejelentkezett felhasználó értékelése.
+                            if (typeof data.yourScore === "number") {
+                                yourValueElement.textContent =
+                                    data.yourScore;
+
+                                yourRatingElement.hidden = false;
+
+                                ratingLink.textContent =
+                                    "★ Update Your Rating";
+                            }
+                        }
+                        catch (error) {
+                            countElement.textContent =
+                                "Ratings are temporarily unavailable.";
+
+                            console.error(error);
+                        }
+                    });
+                })();
+                </script >
+
+
+
+
+</div >
+
+</div >
+
+</div >
+
+</article >

@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="wwwroot\css\game-detail.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\css\game-detail.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OrchardCore.Menu" Version="3.0.1" />
+    <PackageReference Include="OrchardCore.Theme.Targets" Version="3.0.1" />
+    <PackageReference Include="OrchardCore.ContentManagement" Version="3.0.1" />
+    <PackageReference Include="OrchardCore.DisplayManagement" Version="3.0.1" />
+    <PackageReference Include="OrchardCore.ResourceManagement" Version="3.0.1" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <ProjectReference Include="..\..\Modules\DojoCourse.Module\DojoCourse.Module.csproj" />
+  </ItemGroup>
+
+</Project>

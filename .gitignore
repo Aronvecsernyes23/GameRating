@@ -1,0 +1,99 @@
+
+# =============================================
+# DOJO COURSE - Visual Studio / .NET / Orchard Core
+# Place this file next to the solution file.
+# =============================================
+
+# Visual Studio and IDE-generated files
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.sln.ide/
+*.rsuser
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# .NET build output
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+artifacts/
+**/TestResults/
+*.pdb
+*.cache
+*.tmp
+*.tmp_proj
+
+# NuGet and generated dependencies
+packages/
+.nuget/
+**/node_modules/
+
+# Orchard Core runtime: databases, tenants,
+# uploads and configuration
+**/App_Data/
+**/app_data/
+
+# Locally generated/published media in the web host
+# (Do not exclude the custom Theme's wwwroot directory.)
+src/DojoCourse.Web/wwwroot/Default/
+src/DojoCourse.Web/wwwroot/media/
+src/DojoCourse.Web/wwwroot/Media/
+
+# Local databases and related temporary files
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+*.mdf
+*.ldf
+
+# Local configuration and secrets
+**/appsettings.Development.json
+**/appsettings.Local.json
+**/appsettings.*.local.json
+.env
+.env.*
+!.env.example
+*.pfx
+*.p12
+*.pem
+*.key
+*.snk
+*.publishsettings
+*.pubxml
+*.pubxml.user
+
+# Log files and local reports
+*.log
+*.log.*
+*.BuildLog.*
+*.orig
+*.patch
+profiling/
+
+# Publishing output
+publish/
+app.publish/
+**/site/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# IMPORTANT: DojoCourse.Theme/wwwroot/css,
+# js and images ARE TRACKED.
+# Never add a global **/wwwroot/ rule here.

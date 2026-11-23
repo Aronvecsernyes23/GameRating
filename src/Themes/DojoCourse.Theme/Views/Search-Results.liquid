@@ -1,0 +1,52 @@
+﻿
+<section class="dc-search-results">
+
+    <div class="dc-search-results-heading">
+        <span class="dc-search-eyebrow">
+            DOJO COURSE DATABASE
+        </span>
+
+        <h1>Search Results</h1>
+
+        {% if Model.Terms != blank %}
+            <p>
+                Showing results for
+                <strong>{{ Model.Terms }}</strong>
+            </p>
+        {% endif %}
+    </div>
+
+    {% if Model.ContentItems != null and Model.ContentItems.size > 0 %}
+
+        <p class="dc-search-result-count">
+            Games matching your search:
+        </p>
+
+        <div class="dc-search-results-grid">
+
+            {% for item in Model.ContentItems %}
+
+                {{ item | shape_build_display: "Summary" | shape_render }}
+
+            {% endfor %}
+
+        </div>
+
+    {% elsif Model.Terms != blank %}
+
+        <div class="dc-search-empty">
+            <h2>No games found</h2>
+
+            <p>
+                We couldn't find any games matching
+                your search. Try another title.
+            </p>
+
+            <a href="{{ '~/DojoCourse.Module/Games/List' | href }}">
+                Browse All Games
+            </a>
+        </div>
+
+    {% endif %}
+
+</section>

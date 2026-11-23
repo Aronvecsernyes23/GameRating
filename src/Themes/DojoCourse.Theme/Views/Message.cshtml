@@ -1,0 +1,41 @@
+﻿@{
+    string type = Model.Type.ToString().ToLowerInvariant();
+
+    string title = type switch
+    {
+        "success" => "Successfully completed!",
+        "error" => "Something went wrong!",
+        "warning" => "Attention!",
+        _ => "Information"
+    };
+
+    string icon = type switch
+    {
+        "success" => "✓",
+        "error" => "✕",
+        "warning" => "!",
+        _ => "i"
+    };
+}
+
+<div class="dc-notification dc-notification-@type"
+     role="status">
+
+    <span class="dc-notification-icon"
+          aria-hidden="true">
+        @icon
+    </span>
+
+    <div class="dc-notification-content">
+
+        <strong class="dc-notification-title">
+            @title
+        </strong>
+
+        <div class="dc-notification-message">
+            @Model.Message
+        </div>
+
+    </div>
+
+</div>

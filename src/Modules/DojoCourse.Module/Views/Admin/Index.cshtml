@@ -1,0 +1,99 @@
+﻿@model DojoCourse.Module.ViewModels.GameModerationViewModel
+
+@{
+    ViewData["Title"] = "Game Moderation";
+    var baseUrl = Url.Content(
+        "~/Admin/DojoCourse/GameModeration");
+}
+
+<div class="container-fluid">
+
+    <h1>Game Moderation</h1>
+
+    <p class="text-muted">
+        Review game suggestions submitted to Dojo Course.
+    </p>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success"]
+        </div>
+    }
+
+    <h2 class="h4 mt-4 mb-3">Game Suggestions</h2>
+
+    @if (!Model.Suggestions.Any())
+    {
+        <div class="alert alert-info">
+            No game suggestions found.
+        </div>
+    }
+    else
+    {
+        <table class="table table-striped align-middle">
+            <thead>
+                <tr>
+                    <th>Game Title</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var suggestion in Model.Suggestions)
+                {
+                    <tr>
+                        <td>
+                            <strong>@suggestion.Title</strong>
+                        </td>
+
+                        <td>
+                            @if (suggestion.Status == "Pending")
+                            {
+                                <span class="badge bg-warning text-dark">
+                                    Pending
+                                </span>
+                            }
+                            else if (suggestion.Status == "Approved")
+                            {
+                                <span class="badge bg-success">
+                                    Approved
+                                </span>
+                            }
+                            else if (suggestion.Status == "Rejected")
+                            {
+                                <span class="badge bg-danger">
+                                    Rejected
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">
+                                    Legacy
+                                </span>
+                            }
+                        </td>
+
+                        <td>
+                            <a class="btn btn-primary btn-sm"
+                               href="@(baseUrl + "/Details?id=" +
+                                                                  Uri.EscapeDataString(
+                                                                      suggestion.ContentItemId))">
+                                View Details
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <hr />
+
+    <a class="btn btn-outline-secondary"
+       href="@(baseUrl + "/ContentAuthorization")">
+        Test Content Authorization
+    </a>
+
+</div>

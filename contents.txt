@@ -1,0 +1,174 @@
+autmatision
+- workflows
+	- message amikor csinálnak valamit, mondjuk amikor értékeltek egy játékot valamint csináljuk meg azokra amikre hasznos.
+
+most egy olyat csináltam hogy a page-ben csináltam egy új page-t és utána widgetekkel csináltam egy form-ot ahol egy submit gomb van a végén. 
+a workflow-ban csináltam erre egy contact us handler-t ahol http request-et és http redirect-et használtam ami visszavitt a home page-re valamint egy notify-t is
+csináld meg ezt úgy hogy a projktnek hasznos legyen, nem kell specifikusan contact us hanem valami hasznos.
+
+
+- felhasználó, admin és a különböző role-okat megcsinálni
+- a játékoknak saját oldala megvan, ez szerintem megvan.
+- legyen egy fül ahol lehet görgetni a játékok között.
+- külön füle legyen a game subbmission-nek hogy ha rákantitok akkor a submission oldalra lehessen menni
+- tenant-ot használni
+- sql query-t használni.
+
+
+1.
+a Layout.cshtml-be most raktunk egy <shape type = "AdhocShape"/>-et és egy külön AdhocShape.cshtml-et is létrehoztunk a view mappába
+	- <shape type = "AdhocShape"/> átadtunk message paramétert neki
+	- használtunk a await DisplayAsync(await New.AdhocShape(Message: T["message"], User: User))-et
+		- szeretném ha ezt használnánk a DisplayAsync hasznosan valahogy a projektben.
+2.
+css - megvan már - nem kell
+3.
+placement.json - nem kell
+
+
+4. ennél már a modul részben programoztunk a HomeController.cs-ben és használtuk a az inject dependency-t ami a beépített Lombiq Orcard visual studio extenxion-el használ
+	- a views/home mappába van egy index.cshtml
+	- feature-nél a dojoCourse.Module engedélyeztük
+	- Istringlocalizer, INotifier, IHhtmlLocalizer, ILogger<HomeController>
+5. FileManagementController-t csináltunk a Controllers mappába
+	- controller snipet-et használtunk hogy létrehozzuk a class-ot
+	- csinátlunk egy create fájlt
+		- ImedaiFileStore-t is használtunk, orcardcore.media.abstraction
+	- adtunk dependency-t a Manifest.cs-be az OrcardCore.Media-nak: Dependencies=new[]{"OrcardCore.Media"}
+	- CreateFileFromStreamAsync-et is használtuk
+	- csináltunk egy ReadFile-t function-t is
+		- olvastuknk fájlt itt.
+6. content part és content type-et csináltunk code-ból
+	- Model fájlt hoztunk létre és ebbe PersonPart.cs fájlt hoztunk létre
+		- Ez a ContentPart-ból származott
+	- orchardcore.filed nuget csomagot töltöttük le
+	- beraktuk a OrcardCore.ContentFields-et a Dependencies tömbe a Manifest.cs fájlba
+	- a startup.cs-be raktunk services.AddContentPart<PersonPart>()
+	- Migration mappát hoztunk létre és egy Migration fájlt is hoztunk létre ahol a class neve PersonMigration
+		- ez a DataMigration-ből származik
+		- itt van egy Create function
+			- ebbe használtunk egy AlterPartDefinition() és itt láncoltunk sok funkciót a második paraméternél.
+			- valamint AlterTypeDefiniton() szintén a második paraméterben sok láncolás volt
+7. shape templates és drivereket csináltunk itt
+	- Drivers mappát hoztunk létre
+		- PersonPArtDisplyDriver class-t csináltunk, a snipettel hotunk létre, ContentPartDisplayDriver<PersonPart>-ból származik
+	- ViewModels mappát hoztunk létre és egy PersonPartViewModel class-t ebben
+		- [Required] attributumot is használtunk az egyes property-nél
+	- PersonPArtDisplyDriver class-ba 
+		- UpdateAsync, Edit, Display, PopulateViewModel function-k
+	- Views mappába csináltunk egy class-t PersonPart.cshtml-et
+		- itt használtuk a PersonPartViewModel-t
+	- létrehoztunk egy PersonPArt.Edit.cshtml-t is a Views mappába
+	- Db Browsert is használtunk hogy megnézzük a dolgokat
+-------ennél be kell adni a 3. milestone-t
+
+8. event handlers for content items
+	- PersonPartHandler-t is cisnáltunk a ContentPartHandler-ből származik a Handlers Mappába
+	- UpdateAsync function-t használtunk 
+		- contect.ContentItem.DisplayText = instance.Name; például
+	- ezután a startup is hozzáadtuk a services-het AddHandler<PersonPartHandler>
+9. Widget content type-ot csináltunk a kódból
+	- PersonMigration classba 
+		- updateFrom1 function-t csináltunk
+			- ez visszad 2-t
+			- AlterTypeDefinition-t itt is megcsináltuk
+				- Stereotype-ot megadtuk Widget-nek
+	- tehát ezzel létrehozunk egy Person Widget-et
+10. querying content items from code and index tables
+	- PersonController-t hoztunk létre ami a Controller-ből származik
+		- List function-t csináltunk
+		- ISession-nel elértük a database-t
+			- a .Query<ContentItem, ContentItemIndex>(index => index.ContentType=="PersonPage") és itt hasznláltuk a Linq metodusokat
+		- IContentManager-t is használtunk
+	- Létrehoztunk egy új Person page-t az admin felületen és látható hogy a list weboldalon a különböző page-ek
+	- filetereztünk 
+		- Indexes fájlt hoztunk létre
+			- PersonPartIndex class-ot hoztunk itt létre
+			- PersonPartIndexProvider class-t is létrehoztunk
+				- Ez a IndexProvider<contentItem>-ből származott
+				- Describe function-t csináltunk
+			- startup-ba használtunk Singelton-t
+			- PersonMigration Class-ba updateFrom2() csináltunk 
+				- CreateMapIndexTable-t is használtunk és aftunk a szükséges column-ot adtunk hozzá
+				- AlterTable-t is használtunk
+				- ezt a kettőt bemásoltuk a create methodba is
+			- PersonController-be is hozáadtunk .With a query-zéshez és IClock-ot is
+11. Filters and injecting shapes into the Orchard Core layout 
+	- Filters mappát hoztunk létre
+		- ezen belül egy ShapeInjectingFilter class-ot
+		- ez a IAsyncResultFilter-ből származik
+		- OnResultExecutionAsync function van
+		- akkor nem fut amikor ViewResult vagy PageResult
+		- ILayoutAccessor-t is használtunk egy GetLayoutAsync() metodust használtunk
+			- ennek a .Zones is használtuk
+	- LayoutInjectedShape.cshtml-t is létrehoztunk
+	- a startup-ban Configure<MvcOptions> és itt használtuk ezt amit létrehoztunk itt
+	- attribute routing-ot használtunk
+
+
+
+12. Event handlers in Orchard Core 
+	- Events mappát hoztunk létre
+		- LoginiGreeting class-t csináltam snippetel
+			- ILoginFromEvent-ből származik
+			- Orcardcore.users.abstractions nuget csomagot töltöttük le
+	- service.AddScoped-ot adtunk hozzá a Startup-hoz
+13. Permissions and authorization in code in Orchard Core 
+	- Admincontroller class-t csináltunk
+		- contoller snipet-et használtunk
+		- Index function-t csináltunk
+	- ezzel az ha bejelentkezünk az admin profilba akkor meglehet nyitni DojoCourse.Module oldalt amit egy átlagos user nem tud megnyitni
+	- egy ContentAuthorization function-t is létrehoztunk
+	- IContentManager-t használtuk itt
+		- létrehoztunk egy új PersonPage-t a .NewAsnyc-al
+	- IAuthorazitionService-t is használtuk
+		- .AuthorizeAsync metodust is használtuk
+	- orchardcore.infrasturcture nuget csomag
+14. Developing custom Orchard Core permissions 
+	- Permissions mappát hoztunk létre
+		- PersonPagePermissions class-ot is hoztunk létre
+		- snipet Permissionprovider és az ezzel létrehozott function-k
+	- startup-ba is változtattunk
+	- CostumerAuthorazition class-ot is létrehoztunk
+15. Adding an admin menu from code in Orchard Core 
+	- Navigation mappát hoztunk létre
+		- AdminMenu class-t hoztunk létre
+		- adminmenu snippet
+		- orcardcore.navigation nugget csomag
+		- INavigationből származik
+	- startup-ba addscoped I navigationservice-t is hozzáadtunk
+	- a buildNavigationAsync-ben dolgoztunk
+	- builder.Add... ezeket csináltuk item.Action("CostumAuthorization", "Admin", new { Area = "DojoCourse.Module" } )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

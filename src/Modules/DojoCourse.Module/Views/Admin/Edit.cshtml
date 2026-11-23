@@ -1,0 +1,145 @@
+﻿@model DojoCourse.Module.ViewModels.EditGameSuggestionViewModel
+
+@{
+    ViewData["Title"] = "Edit Game Suggestion";
+    var baseUrl = Url.Content(
+        "~/Admin/DojoCourse/GameModeration");
+}
+
+<div class="container-fluid">
+
+    <h1>Edit Game Suggestion</h1>
+
+    <p class="text-muted">
+        Correct the submitted game information
+        before approving it.
+    </p>
+
+    <form method="post"
+          enctype="multipart/form-data"
+          action="@(baseUrl + "/Edit")">
+
+        @Html.AntiForgeryToken()
+
+        <input type="hidden"
+               name="Id"
+               value="@Model.Id" />
+
+        <div asp-validation-summary="All"
+             class="text-danger mb-3"></div>
+
+        <div class="mb-3">
+            <label class="form-label" for="Title">
+                Game Title
+            </label>
+            <input class="form-control"
+                   id="Title" name="Title"
+                   value="@Model.Title"
+                   maxlength="180" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="ReleaseDate">
+                Release Date
+            </label>
+            <input class="form-control"
+                   type="date"
+                   id="ReleaseDate"
+                   name="ReleaseDate"
+                   value="@(Model.ReleaseDate?.ToString("yyyy-MM-dd"))"
+                   required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="Developer">
+                Developer
+            </label>
+            <input class="form-control"
+                   id="Developer" name="Developer"
+                   value="@Model.Developer"
+                   maxlength="150" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="Publisher">
+                Publisher
+            </label>
+            <input class="form-control"
+                   id="Publisher" name="Publisher"
+                   value="@Model.Publisher"
+                   maxlength="150" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="Platforms">
+                Platforms
+            </label>
+            <input class="form-control"
+                   id="Platforms" name="Platforms"
+                   value="@Model.Platforms"
+                   maxlength="500" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="Genre">
+                Genre
+            </label>
+            <input class="form-control"
+                   id="Genre" name="Genre"
+                   value="@Model.Genre"
+                   maxlength="150" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="Description">
+                Description
+            </label>
+            <textarea class="form-control"
+                      id="Description"
+                      name="Description"
+                      rows="6"
+                      maxlength="3000"
+                      required>@Model.Description</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">
+                Cover Image
+            </label>
+
+            @if (!string.IsNullOrWhiteSpace(Model.CurrentCoverUrl))
+            {
+                <div class="mb-2">
+                    <img src="@Model.CurrentCoverUrl"
+                         alt="Current cover"
+                         style="max-width:180px;
+                    max-height:250px;"
+                         class="rounded" />
+                </div>
+            }
+
+            <input class="form-control"
+                   type="file"
+                   name="CoverImage"
+                   accept=".jpg,.jpeg,.png,.webp" />
+
+            <div class="form-text">
+                Optional. Upload a new image to replace
+                the current cover. Maximum 5 MB.
+            </div>
+        </div>
+
+        <button type="submit"
+                class="btn btn-primary">
+            Save Changes
+        </button>
+
+        <a class="btn btn-secondary"
+           href="@(baseUrl + "/Details?id=" +
+                          Uri.EscapeDataString(Model.Id))">
+            Cancel
+        </a>
+
+    </form>
+
+</div>

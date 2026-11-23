@@ -1,0 +1,207 @@
+﻿@model DojoCourse.Module.ViewModels.GameSuggestionDetailsViewModel
+
+@{
+    ViewData["Title"] = "Game Suggestion Details";
+    var baseUrl = Url.Content(
+        "~/Admin/DojoCourse/GameModeration");
+}
+
+<div class="container-fluid">
+
+    <a class="btn btn-secondary mb-4"
+       href="@(baseUrl + "/Index")">
+        Back to Game Moderation
+    </a>
+
+    <h1>@Model.Title</h1>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success"]
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["Error"]
+        </div>
+    }
+
+    @if (Model.Data == null)
+    {
+        <div class="alert alert-warning">
+            This is a legacy GameSuggestion.
+
+            It does not contain the structured
+            GameSubmissionData used by the new
+            submission form.
+
+            The existing content has been preserved.
+            It cannot be approved automatically yet.
+        </div>
+    }
+    else
+    {
+        var data = Model.Data;
+
+        <div class="card mb-4">
+            <div class="card-body">
+
+                <h2 class="h4">Submitted Game Details</h2>
+
+                <p>
+                    <strong>Status:</strong>
+                    @data.Status
+                </p>
+
+                @if (!string.IsNullOrWhiteSpace(Model.CoverUrl))
+                {
+                    <img src="@Model.CoverUrl"
+                         alt="Cover of @data.Title"
+                         style="max-width:220px;
+                    max-height:320px;
+                    object-fit:contain;"
+                         class="rounded mb-4" />
+                }
+
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Game Title</th>
+                            <td>@data.Title</td>
+                        </tr>
+                        <tr>
+                            <th>Release Date</th>
+                            <td>@data.ReleaseDate</td>
+                        </tr>
+                        <tr>
+                            <th>Developer</th>
+                            <td>@data.Developer</td>
+                        </tr>
+                        <tr>
+                            <th>Publisher</th>
+                            <td>@data.Publisher</td>
+                        </tr>
+                        <tr>
+                            <th>Platforms</th>
+                            <td>@data.Platforms</td>
+                        </tr>
+                        <tr>
+                            <th>Genre</th>
+                            <td>@data.Genre</td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td style="white-space:pre-wrap">
+                                @data.Description
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Submitted By (User ID)</th>
+                            <td>@data.SubmittedByUserId</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                @if (data.Status == "Rejected")
+                {
+                    <div class="alert alert-danger">
+                        <strong>Rejection reason:</strong>
+                        @data.ReviewReason
+                    </div>
+                }
+
+                @if (data.Status == "Approved")
+                {
+                    <div class="alert alert-success">
+                        This suggestion has been approved.
+                    </div>
+
+                    @if (!string.IsNullOrWhiteSpace(Model.GameUrl))
+                    {
+                        <a href="@Model.GameUrl"
+                           class="btn btn-success">
+                            View Published Game
+                        </a>
+                    }
+                }
+
+            </div>
+        </div>
+
+        @if (data.Status == "Pending")
+        {
+            <div class="card mb-4">
+                <div class="card-body">
+
+                    <h2 class="h4">Moderation Actions</h2>
+
+                    <div class="d-flex gap-2 flex-wrap mb-4">
+
+                        <a class="btn btn-primary"
+                           href="@(baseUrl + "/Edit?id=" +
+                                                          Uri.EscapeDataString(Model.Id))">
+                            Edit Suggestion
+                        </a>
+
+                        @if (User.IsInRole("Administrator"))
+                        {
+                            <form method="post"
+                                  action="@(baseUrl + "/Approve")">
+
+                                @Html.AntiForgeryToken()
+
+                                <input type="hidden"
+                                       name="id"
+                                       value="@Model.Id" />
+
+                                <button type="submit"
+                                        class="btn btn-success">
+                                    Approve Game
+                                </button>
+                            </form>
+                        }
+
+                    </div>
+
+                    <h3 class="h5">Reject Suggestion</h3>
+
+                    <form method="post"
+                          action="@(baseUrl + "/Reject")">
+
+                        @Html.AntiForgeryToken()
+
+                        <input type="hidden"
+                               name="id"
+                               value="@Model.Id" />
+
+                        <div class="mb-3">
+                            <label for="reason"
+                                   class="form-label">
+                                Rejection Reason
+                            </label>
+
+                            <textarea id="reason"
+                                      name="reason"
+                                      class="form-control"
+                                      rows="3"
+                                      minlength="5"
+                                      maxlength="500"
+                                      required></textarea>
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-danger">
+                            Reject Game
+                        </button>
+
+                    </form>
+
+                </div>
+            </div>
+        }
+    }
+
+</div>
