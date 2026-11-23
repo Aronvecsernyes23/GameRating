@@ -1,8 +1,4 @@
 
-# =============================================
-# DOJO COURSE - Visual Studio / .NET / Orchard Core
-# Place this file next to the solution file.
-# =============================================
 
 # Visual Studio and IDE-generated files
 .vs/
@@ -38,23 +34,12 @@ packages/
 .nuget/
 **/node_modules/
 
-# Orchard Core runtime: databases, tenants,
-# uploads and configuration
-**/App_Data/
-**/app_data/
-
 # Locally generated/published media in the web host
 # (Do not exclude the custom Theme's wwwroot directory.)
-src/DojoCourse.Web/wwwroot/Default/
-src/DojoCourse.Web/wwwroot/media/
-src/DojoCourse.Web/wwwroot/Media/
 
 # Local databases and related temporary files
-*.db
 *.db-shm
 *.db-wal
-*.sqlite
-*.sqlite3
 *.mdf
 *.ldf
 
